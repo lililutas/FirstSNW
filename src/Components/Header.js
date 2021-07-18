@@ -8,6 +8,9 @@ export default function Header() {
             <div className='header__logo'>
                 <img src='https://placehold.it/50x50/333' />
             </div>
+            <div className='header__name'>
+                <p>ДВАЧ</p>
+            </div>
         </div>
     )
 }
