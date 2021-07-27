@@ -1,14 +1,15 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
 
 export default function SideBar() {
     return (
         <div className='sidebar'>
             <nav className='nav'>
                 <ul className='nav__list'>
-                    <li><a href='#' className='nav__item'>Моя страница</a></li>
-                    <li><a href='#' className='nav__item'>Новости</a></li>
-                    <li><a href='#' className='nav__item'>Чот-там</a></li>
-                    <li><a href='#' className='nav__item'>Чот-там</a></li>
+                    <li><NavLink to='/profile' className='nav__item'>Моя страница</NavLink></li>
+                    <li><NavLink to='/messages' className='nav__item'>Сообщения</NavLink></li>
+                    <li><NavLink to='#' className='nav__item'>Чот-там</NavLink></li>
+                    <li><NavLink to='#' className='nav__item'>Чот-там</NavLink></li>
                 </ul>
             </nav>
         </div>
