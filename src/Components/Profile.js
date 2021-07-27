@@ -19,6 +19,10 @@ export default function Profile() {
                 </div>
                 <div className='posts__items'>
                     <Post />
+                    <Post />
+                    <Post />
+                    <Post />
+                    <Post />
                 </div>
             </div>
         </div>
