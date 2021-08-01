@@ -6,17 +6,17 @@ import {
     Switch,
     Route,
     Link
-  } from "react-router-dom";
+} from "react-router-dom";
 
-export default function Content() {
+export default function Content(props) {
     return (
         <div className='content'>
             <Switch>
                 <Route path='/profile'>
-                    <Profile />
+                    <Profile state={props.state.profilePage} addPost={props.addPost}/>
                 </Route>
                 <Route path='/messages'>
-                    <Messages />
+                    <Messages state={props.state.messangerPage}/>
                 </Route>
             </Switch>
         </div>

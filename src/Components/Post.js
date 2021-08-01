@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Post() {
+export default function Post(props) {
     return (
         <div className='post'>
             <div className='post__header'>
@@ -8,11 +8,11 @@ export default function Post() {
                     <img src='https://placehold.it/50x50/333' />
                 </div>
                 <div className='post__info'>
-                   asdasdasdsda
+                    {props.name}
                 </div>
             </div>
             <div className='post__content'>
-                adasdasdasads
+                {props.content}
             </div>
         </div>
     )
