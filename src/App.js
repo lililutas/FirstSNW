@@ -6,13 +6,14 @@ import Content from './Components/Content'
 import './App.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 
+
 export default function App(props) {
   return (
     <Router>
       <div className='app-wrapper'>
         <Header />
         <SideBar />
-        <Content state={props.state} addPost={props.addPost} />
+        <Content state={props.state} dispatch={props.dispatch}/>
         <Footer />
       </div>
     </Router>

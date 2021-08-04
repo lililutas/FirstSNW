@@ -21,7 +21,7 @@ export default function Messages(props) {
                 <div className='dialog__messages'>
                     {
                         props.state.messages.map((message) => {
-                            return <Message text={message.text} author={message.name} />
+                            return <Message text={message.content} author={message.name} />
                         })
                     }
                 </div>

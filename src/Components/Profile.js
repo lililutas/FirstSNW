@@ -1,13 +1,6 @@
 import React from 'react'
 import Post from './Post'
 export default function Profile(props) {
-
-    let newPostArea = React.createRef();
-    const addPost = (event) => {
-        event.preventDefault();
-        props.addPost(newPostArea.current.value);
-    }
-
     return (
         <div className='profile'>
             <div className='profile__header'>
@@ -23,20 +16,20 @@ export default function Profile(props) {
             <div className='profile__posts'>
                 <div className='posts__header'>
                     <form method='GET'>
-                        <textarea placeholder='Напишите что-нибудь...' ref={newPostArea}/>
-                        <button onClick={addPost}>Опубликовать</button>
+                        <textarea placeholder='Напишите что-нибудь...' value={props.state.newPost} onChange={props.newPostArea} />
+                        <button onClick={props.addPost}>Опубликовать</button>
                     </form>
                 </div>
                 <div className='posts__items'>
                     {
-                        
                         props.state.posts.map(post => {
-                            console.log(2);
-                            return <Post name={post.name} content={post.text} likes={post.likes} />  
-                        })
+                            return <Post name={post.name} content={post.content} likes={post.likes} />
+                        }).reverse()
                     }
                 </div>
             </div>
         </div>
     )
 }
+
+

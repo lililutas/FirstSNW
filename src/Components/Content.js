@@ -1,5 +1,4 @@
 import React from 'react'
-import Profile from './Profile'
 import Messages from './Messages';
 import {
     BrowserRouter as Router,
@@ -7,18 +6,21 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import { ProfileContainer } from './ProfileContainer';
 
 export default function Content(props) {
     return (
         <div className='content'>
             <Switch>
                 <Route path='/profile'>
-                    <Profile state={props.state.profilePage} addPost={props.addPost}/>
+                    <ProfileContainer state={props.state.profilePage} dispatch={props.dispatch}/>
                 </Route>
                 <Route path='/messages'>
-                    <Messages state={props.state.messangerPage}/>
+                    <Messages state={props.state.messangerPage} dispatch={props.dispatch}/>
                 </Route>
             </Switch>
         </div>
     )
 }
+
+
