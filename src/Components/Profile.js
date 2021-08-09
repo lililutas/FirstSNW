@@ -5,7 +5,7 @@ export default function Profile(props) {
         <div className='profile'>
             <div className='profile__header'>
                 <div className='profile__image'>
-                    <img src='https://placehold.it/100x100/333' className='profile__image-img' />
+                    <img src='https://placehold.it/100x100/333' className='profile__image-img' alt='User avatar' />
                 </div>
 
                 <div className='profile__info'>

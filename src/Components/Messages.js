@@ -12,7 +12,7 @@ export default function Messages(props) {
             <div className='messenger__dialog'>
                 <div className='dialog__header'>
                     <div className='dialog__header-image'>
-                        <img src='https://placehold.it/50x50/333' />
+                        <img src='https://placehold.it/50x50/333' alt='companion avatar' />
                     </div>
                     <div className='dialog__header-info'>
                         Name Surname
@@ -24,6 +24,12 @@ export default function Messages(props) {
                             return <Message text={message.content} author={message.name} />
                         })
                     }
+                </div>
+                <div className='dialog__footer'>
+                    <form method='GET'>
+                        <textarea placeholder='Напишите что-нибудь...' value={props.state.newMessage} onChange={props.newMessageArea} />
+                        <button onClick={props.sendMessage}>Отправить</button>
+                    </form>
                 </div>
             </div>
         </div>

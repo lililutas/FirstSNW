@@ -13,7 +13,7 @@ export default function App(props) {
       <div className='app-wrapper'>
         <Header />
         <SideBar />
-        <Content state={props.state} dispatch={props.dispatch}/>
+        <Content/>
         <Footer />
       </div>
     </Router>

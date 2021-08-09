@@ -1,17 +1,21 @@
-import React from "react";
 import Profile from "./Profile";
-import {addPostAction, newPostAreaAction} from '../Redux/ActionCreators';
+import { addPostAction, newPostAreaAction } from '../Redux/ActionCreators';
+import { connect } from "react-redux";
 
-export const ProfileContainer = (props) => {
-    const newPostArea = (event) => {
-        props.dispatch(newPostAreaAction(event.target.value));
-    };
-    const addPost = (event) => {
+const mapStateToProps = (state) => ({
+    state: state.profilePage
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    newPostArea: (event) => {
+        dispatch(newPostAreaAction(event.target.value));
+    },
+    addPost: (event) => {
         event.preventDefault();
-        props.dispatch(addPostAction(1,1));
+        dispatch(addPostAction(1, 1));
     }
-    
-    return(
-        <Profile state={props.state} newPostArea={newPostArea} addPost={addPost}/>
-    );
-}
+});
+
+const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+
+export default ProfileContainer;

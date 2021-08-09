@@ -6,7 +6,7 @@ export default function Companion(props) {
         <Link to={'?comp=' + props.id}>
             <div className='messenger__companion'>
                 <div className='companion__photo'>
-                    <img src='https://placehold.it/50x50/333' />
+                    <img src='https://placehold.it/50x50/333' alt='companion avatar'/>
                 </div>
                 <div className='companion__content'>
                     {props.name}

@@ -17,19 +17,27 @@ const initialState = {
 const ProfileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.addPost:
-            state.posts.push({
-                ownerId: action.ownerId,
-                holderId: action.holderId,
-                likes: 0,
-                content: state.newPost
-            });
-            state.newPost = '';
-            break;
+            return {
+                ...state,
+                posts: [
+                    ...state.posts, 
+                    {
+                    ownerId: action.ownerId,
+                    holderId: action.holderId,
+                    likes: 0,
+                    content: state.newPost
+                }],
+                newPost: ''
+            };
         case ActionTypes.updateText:
-            state.newPost = action.text;
-            break;
+            return {
+                ...state,
+                newPost: action.text
+            };
+        default:
+            return state;
     }
-    return state;
+    
 }
 
 export default ProfileReducer;

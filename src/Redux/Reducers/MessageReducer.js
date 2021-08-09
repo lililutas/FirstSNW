@@ -1,13 +1,36 @@
 import ActionTypes from "../ActionTypes";
 
 const initialState = {
-    messages: [
-        { ownerId: 1, dialogId: 1, content: 'Мое первое сообщение' },
-        { ownerId: 1, dialogId: 1, content: 'Мое первое сообщение' },
-        { ownerId: 1, dialogId: 1, content: 'Мое первое сообщение' },
-        { ownerId: 1, dialogId: 1, content: 'Мое первое сообщение' },
-        { ownerId: 1, dialogId: 1, content: 'Мое первое сообщение' },
-        { ownerId: 1, dialogId: 1, content: 'Мое первое сообщение' },
+    messages: [{
+            ownerId: 1,
+            dialogId: 1,
+            content: 'Мое первое сообщение'
+        },
+        {
+            ownerId: 1,
+            dialogId: 1,
+            content: 'Мое первое сообщение'
+        },
+        {
+            ownerId: 1,
+            dialogId: 1,
+            content: 'Мое первое сообщение'
+        },
+        {
+            ownerId: 1,
+            dialogId: 1,
+            content: 'Мое первое сообщение'
+        },
+        {
+            ownerId: 1,
+            dialogId: 1,
+            content: 'Мое первое сообщение'
+        },
+        {
+            ownerId: 1,
+            dialogId: 1,
+            content: 'Мое первое сообщение'
+        },
     ],
     newMessage: '',
 }
@@ -15,18 +38,27 @@ const initialState = {
 const MessageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.sendMessage:
-            state.messages.push({
-                ownerId: action.ownerId,
-                dialogId: action.dialogId,
-                content: action.content
-            });
-            state.newMessage = '';
-            break;
+            return {
+                ...state,
+                messages: [
+                    ...state.messages,
+                    {
+                        ownerId: action.ownerId,
+                        dialogId: action.dialogId,
+                        content: state.newMessage
+                    }
+                ],
+                newMessage: ''
+            };
         case ActionTypes.updateContent:
-            state.newMessage = action.content;
-            break;
+            return {
+                ...state,
+                newMessage: action.content
+            };
+        default:
+            return state;
     }
-    return state;
+
 }
 
 export default MessageReducer;

@@ -3,6 +3,10 @@ const ActionTypes = {
     updateContent: 'updateContent',
     addPost: 'addPost',
     updateText: 'updateText',
+    searchUser: 'searchUser',
+    searchUserText: 'searchUserText',
+    toggleFollow: 'toggleFollow',
+    setUsers: 'setUsers',
 }
 
 export default ActionTypes;

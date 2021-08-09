@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 
 export default function SideBar() {
     return (
@@ -9,7 +9,7 @@ export default function SideBar() {
                     <li><NavLink to='/profile' className='nav__item'>Моя страница</NavLink></li>
                     <li><NavLink to='/messages' className='nav__item'>Сообщения</NavLink></li>
                     <li><NavLink to='#' className='nav__item'>Чот-там</NavLink></li>
-                    <li><NavLink to='#' className='nav__item'>Чот-там</NavLink></li>
+                    <li><NavLink to='/users' className='nav__item'>Пользователи</NavLink></li>
                 </ul>
             </nav>
         </div>

@@ -1,22 +1,24 @@
 import React from 'react'
-import Messages from './Messages';
 import {
-    BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
-import { ProfileContainer } from './ProfileContainer';
+import ProfileContainer from './ProfileContainer';
+import MessagesContainer from './MessagesContainer';
+import UsersContainer from './UsersContainer';
 
 export default function Content(props) {
     return (
         <div className='content'>
             <Switch>
                 <Route path='/profile'>
-                    <ProfileContainer state={props.state.profilePage} dispatch={props.dispatch}/>
+                    <ProfileContainer/>
                 </Route>
                 <Route path='/messages'>
-                    <Messages state={props.state.messangerPage} dispatch={props.dispatch}/>
+                    <MessagesContainer/>
+                </Route>
+                <Route path='/users'>
+                    <UsersContainer/>
                 </Route>
             </Switch>
         </div>

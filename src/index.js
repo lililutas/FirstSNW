@@ -4,24 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './Redux/Store';
+import { Provider } from 'react-redux';
 
 
 
-const renderDOM = (state) => {
-  ReactDOM.render(
+ReactDOM.render(
+  <Provider store={store}>
     <React.StrictMode>
-        <App state={state} dispatch={store.dispatch}/>
-    </React.StrictMode>,
+      <App/>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
-  );
-}
-
-renderDOM(store.getState());
+);
 
 
-store.subscribe(() => {
-  renderDOM(store.getState());
-})
 
 
 
