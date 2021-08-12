@@ -450,6 +450,10 @@
   padding: 10px 5px;
 }
 
+.people__user a{
+  text-decoration: none;
+  color: #000;
+}
 
 .user__info{
   display: flex;
@@ -497,3 +501,32 @@
 }
 
 /* /footer */
+
+
+/* Helpers */
+
+.btn-showMore{
+  margin: 0 auto;
+  margin-top: 20px;
+  border: 2px solid #8b909196 ;
+  background-color: #fff;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px;
+  cursor: pointer;
+  transition: all .2s linear;
+  width: 30%;
+}
+
+.btn-showMore:hover{
+  background-color: #efefef;
+  border-color: #11acff;
+}
+
+
+.preloader__image{
+  margin: 0 auto;
+}
+
+/* /Helpers */

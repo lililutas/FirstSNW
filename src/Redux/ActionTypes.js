@@ -7,6 +7,8 @@ const ActionTypes = {
     searchUserText: 'searchUserText',
     toggleFollow: 'toggleFollow',
     setUsers: 'setUsers',
+    toggleFetching: 'toggleFetching',
+    setUser: 'setUser',
 }
 
 export default ActionTypes;

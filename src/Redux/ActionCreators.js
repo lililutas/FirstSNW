@@ -50,3 +50,17 @@ export const setUsers = (users) => {
         users
     }
 }
+
+export const toggleFetching = (fetching) => {
+    return {
+        type: ActionTypes.toggleFetching,
+        fetching
+    }
+}
+
+export const setUser = (user) => {
+    return {
+        type: ActionTypes.setUser,
+        user
+    }
+}

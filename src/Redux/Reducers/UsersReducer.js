@@ -63,6 +63,7 @@ const initialState = {
         },
     ],
     searchText: '',
+    isFetching: false,
 
 };
 
@@ -93,7 +94,11 @@ const UsersReducer = (state = initialState, action) => {
                 ...state,
                 users: [...state.users, ...action.users]
             };
-            
+        case ActionTypes.toggleFetching:
+            return{
+                ...state,
+                isFetching: action.fetching
+            };
         default:
             return state;
     }

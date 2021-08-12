@@ -1,9 +1,34 @@
 import Profile from "./Profile";
-import { addPostAction, newPostAreaAction } from '../Redux/ActionCreators';
+import { addPostAction, newPostAreaAction, setUser } from '../Redux/ActionCreators';
 import { connect } from "react-redux";
+import React, { Component } from 'react'
+import axios from "axios";
+
+class ProfileAPI extends Component {
+    
+    componentDidMount = () => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/profile/1')
+            .then((response) => {
+                this.props.setUser(response.data);
+            })
+            
+    };
+    
+    
+    render() {
+        return (
+            <Profile {...this.props}/>
+        )
+    }
+}
+
+
+
 
 const mapStateToProps = (state) => ({
-    state: state.profilePage
+    posts: state.profilePage.posts,
+    newPost: state.profilePage.newPost,
+    user: state.profilePage.user
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -13,9 +38,10 @@ const mapDispatchToProps = (dispatch) => ({
     addPost: (event) => {
         event.preventDefault();
         dispatch(addPostAction(1, 1));
+    },
+    setUser: (user) => {
+        dispatch(setUser(user));
     }
 });
 
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
-
-export default ProfileContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileAPI);
