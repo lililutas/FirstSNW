@@ -3,11 +3,13 @@ import { addPostAction, newPostAreaAction, setUser } from '../Redux/ActionCreato
 import { connect } from "react-redux";
 import React, { Component } from 'react'
 import axios from "axios";
+import { withRouter } from "react-router-dom";
+
 
 class ProfileAPI extends Component {
-    
     componentDidMount = () => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/1')
+        debugger
+        axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + this.props.match.params.userId)
             .then((response) => {
                 this.props.setUser(response.data);
             })
@@ -24,11 +26,10 @@ class ProfileAPI extends Component {
 
 
 
-
 const mapStateToProps = (state) => ({
     posts: state.profilePage.posts,
     newPost: state.profilePage.newPost,
-    user: state.profilePage.user
+    user: state.profilePage.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -44,4 +45,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileAPI);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileAPI));

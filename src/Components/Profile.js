@@ -1,13 +1,17 @@
 import React from 'react'
 import Post from './Post'
+import { Preloader } from './Preloader'
 export default function Profile(props) {
-    debugger;
+    debugger
+    if (!props.user) {
+        return <Preloader />
+    }
     return (
         <div className='profile'>
             <div className='profile__header'>
-               <div className='profile__image'>
+                <div className='profile__image'>
                     {props.user.photos.large != null ? <img src={props.user.photos.large} className='profile__image-img' alt='User avatar' /> : <img src='https://placehold.it/100x100/333' className='profile__image-img' alt='User avatar' />}
-                    
+
                 </div>
                 <div className='profile__info'>
                     <div className='profile__name'>{props.user.fullName}</div>
@@ -31,6 +35,8 @@ export default function Profile(props) {
             </div>
         </div>
     )
+
+
 }
 
 

@@ -4,6 +4,10 @@ import User from './User';
 
 
 const Users = (props) => {
+
+    if(props.users.length === 0){
+        return <Preloader />
+    }
     return (
         <div className='users'>
                 <div className='people'>

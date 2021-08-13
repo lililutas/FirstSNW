@@ -1,56 +1,6 @@
 import ActionTypes from "../ActionTypes";
 
-const initialState = {
-    users: [{
-            id: 1,
-            followed: false,
-            name: 'Дмитрий',
-            surname: 'Соловьев',
-            age: 20,
-            city: 'Город',
-            country: 'Страна',
-            status: 'Гений)'
-        },
-        {
-            id: 2,
-            followed: false,
-            name: 'Дмитрий',
-            surname: 'Соловьев',
-            age: 20,
-            city: 'Город',
-            country: 'Страна',
-            status: 'Гений)'
-        },
-        {
-            id: 3,
-            followed: false,
-            name: 'Дмитрий',
-            surname: 'Соловьев',
-            age: 20,
-            city: 'Город',
-            country: 'Страна',
-            status: 'Гений)'
-        },
-        {
-            id: 4,
-            followed: false,
-            name: 'Дмитрий',
-            surname: 'Соловьев',
-            age: 20,
-            city: 'Город',
-            country: 'Страна',
-            status: 'Гений)'
-        },
-        {
-            id: 5,
-            followed: false,
-            name: 'Дмитрий',
-            surname: 'Соловьев',
-            age: 20,
-            city: 'Город',
-            country: 'Страна',
-            status: 'Гений)'
-        },
+/* example 
         {
             id: 6,
             followed: false,
@@ -61,10 +11,14 @@ const initialState = {
             country: 'Страна',
             status: 'Гений)'
         },
-    ],
+ */
+
+const initialState = {
+    users: [],
     searchText: '',
     isFetching: false,
-
+    usersPageCount: 10,
+    usersPage: 1
 };
 
 const UsersReducer = (state = initialState, action) => {
@@ -92,7 +46,8 @@ const UsersReducer = (state = initialState, action) => {
         case ActionTypes.setUsers:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...state.users, ...action.users],
+                usersPage: state.usersPage + 1
             };
         case ActionTypes.toggleFetching:
             return{

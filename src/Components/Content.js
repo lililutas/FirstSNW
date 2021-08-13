@@ -11,7 +11,7 @@ export default function Content(props) {
     return (
         <div className='content'>
             <Switch>
-                <Route path='/profile'>
+                <Route path='/profile/id=:userId'>
                     <ProfileContainer/>
                 </Route>
                 <Route path='/messages'>

@@ -6,9 +6,13 @@ import * as axios from 'axios';
 
 class UsersAPI extends Component {
 
+    componentDidMount = () => {
+        this.getUsers();
+    }
+
     getUsers = () => {
         this.props.toggleFetching(true);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPageCount}&page=${this.props.usersPage}`)
             .then((response) => {
                 this.props.setUsers(response.data.items);
                 this.props.toggleFetching(false);
@@ -27,7 +31,9 @@ const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         searchText: state.usersPage.searchText,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        usersPageCount: state.usersPage.usersPageCount,
+        usersPage: state.usersPage.usersPage
     }
 }
 
