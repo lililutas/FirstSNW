@@ -61,7 +61,7 @@ const ProfileReducer = (state = initialState, action) => {
                 newPost: action.text
             };
         case ActionTypes.setUser:
-            debugger
+        
             return {
                 ...state,
                 user: {

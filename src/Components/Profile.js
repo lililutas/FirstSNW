@@ -2,7 +2,7 @@ import React from 'react'
 import Post from './Post'
 import { Preloader } from './Preloader'
 export default function Profile(props) {
-    debugger
+
     if (!props.user) {
         return <Preloader />
     }

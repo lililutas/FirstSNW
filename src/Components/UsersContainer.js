@@ -7,12 +7,53 @@ import * as axios from 'axios';
 class UsersAPI extends Component {
 
     componentDidMount = () => {
-        this.getUsers();
+        if(this.props.users.length === 0){
+            this.getUsers();
+        }
+       
+    }
+
+    toggleFollow = (event) => {
+        
+        axios.get(`https://social-network.samuraijs.com/api/1.0/follow/${event.target.value}`, {
+            withCredentials: true
+        })
+            .then((response) => {
+                if (!response.data) {
+                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${event.target.value}`, {}, {
+                        withCredentials: true,
+                        headers: {
+                            'API-KEY': '449239c2-9e17-4da1-8175-11b81b35487a'
+                        }
+                    })
+                        .then((response) => {
+                            if (response.data.resultCode === 0) {
+                                this.props.toggleFollow(event);
+                            }
+                        })
+                }
+                else {
+                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${event.target.value}`, {
+                        withCredentials: true,
+                        headers: {
+                            'API-KEY': '449239c2-9e17-4da1-8175-11b81b35487a'
+                        }
+                    })
+                        .then((response) => {
+                            if (response.data.resultCode === 0) {
+                                this.props.toggleFollow(event);
+                            }
+                        })
+                }
+            })
+
     }
 
     getUsers = () => {
         this.props.toggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPageCount}&page=${this.props.usersPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersPageCount}&page=${this.props.usersPage}`, {
+            withCredentials: true,
+        })
             .then((response) => {
                 this.props.setUsers(response.data.items);
                 this.props.toggleFetching(false);
@@ -21,7 +62,7 @@ class UsersAPI extends Component {
 
     render() {
         return (
-            <Users getUsers={this.getUsers} users={this.props.users} toggleFollow={this.props.toggleFollow} isFetching={this.props.isFetching} />
+            <Users getUsers={this.getUsers} users={this.props.users} toggleFollow={this.toggleFollow} isFetching={this.props.isFetching} />
         )
     }
 }
@@ -39,7 +80,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleFollow: (event) =>{
+        toggleFollow: (event) => {
             event.preventDefault();
             dispatch(toggleFollow(event.target.value));
         },

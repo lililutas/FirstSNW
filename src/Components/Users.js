@@ -5,11 +5,12 @@ import User from './User';
 
 const Users = (props) => {
 
-    if(props.users.length === 0){
+    if (props.users.length === 0) {
         return <Preloader />
     }
-    return (
-        <div className='users'>
+    else {
+        return (
+            <div className='users'>
                 <div className='people'>
                     <div className='people__search'>
                         <p>Пользователи количество</p>
@@ -26,13 +27,14 @@ const Users = (props) => {
                         }
                     </div>
                     <button type='button' className='btn-showMore' onClick={props.getUsers}>Показать больше</button>
-                    { props.isFetching && <Preloader />}
+                    {props.isFetching && <Preloader />}
                 </div>
                 <div className='users__sidebar'>
                     asdasdasdasd
                 </div>
             </div>
-    )
+        )
+    }
 }
 
 

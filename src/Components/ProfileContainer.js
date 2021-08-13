@@ -8,7 +8,7 @@ import { withRouter } from "react-router-dom";
 
 class ProfileAPI extends Component {
     componentDidMount = () => {
-        debugger
+
         axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + this.props.match.params.userId)
             .then((response) => {
                 this.props.setUser(response.data);

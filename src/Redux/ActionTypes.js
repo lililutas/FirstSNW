@@ -9,6 +9,7 @@ const ActionTypes = {
     setUsers: 'setUsers',
     toggleFetching: 'toggleFetching',
     setUser: 'setUser',
+    login: 'login'
 }
 
 export default ActionTypes;

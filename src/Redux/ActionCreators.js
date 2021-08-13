@@ -64,3 +64,11 @@ export const setUser = (user) => {
         user
     }
 }
+
+export const login = (login, userId) => {
+    return {
+        type: ActionTypes.login,
+        login,
+        userId
+    }
+}

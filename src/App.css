@@ -32,7 +32,11 @@
 
 }
 
-.header__logo {
+.header__logo{
+  display: flex;
+}
+
+.header__logo img{
   border-radius: 50%;
   overflow: hidden;
   margin-left: 10px;
@@ -40,12 +44,18 @@
 
 }
 
-.header__name {
+.header__logo p{
+
   color: #fff;
   font-size: 20px;
   font-style: italic;
   align-self: center;
-  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.header__auth{
+  display: flex;
+  width: 20%;
 }
 
 /* /header */
@@ -522,6 +532,27 @@
 .btn-showMore:hover{
   background-color: #efefef;
   border-color: #11acff;
+}
+
+
+.btn-login {
+  margin: auto auto;
+
+  border: 2px solid #8b909196 ;
+  background-color: #fff;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 5px;
+  cursor: pointer;
+  transition: all .2s linear;
+  width: 40%;
+  height: 70%;
+}
+
+.btn-login:hover{
+  background-color: #efefef;
+  border-color: #000;
 }
 
 
