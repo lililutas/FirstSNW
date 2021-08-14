@@ -1,33 +1,23 @@
-import axios from 'axios';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { checkAuthAPI } from '../API/Api';
 import { login } from '../Redux/ActionCreators';
 import Header from './Header';
 
 
 class HeaderContainer extends Component {
-    
+
     componentDidMount = () => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
-            withCredentials: true,
+        checkAuthAPI().then((data) => {
+            if (data.resultCode === 0) {
+                this.props.login( data.data.login, data.data.id);
+            }
         })
-            .then((response) => {
-                
-                if (response.data.resultCode === 0) {
-                    this.props.login({login: response.data.data.login, userId: response.data.data.id});
-                }
-            })
-
-  
-
-
-
-        
     }
-    
+
     render() {
         return (
-            <Header isLogin={this.props.isLogin}/>
+            <Header isLogin={this.props.isLogin} />
         )
     }
 }
@@ -38,8 +28,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    login: (data) => {
-        dispatch(login(data.login, data.userId));
+    login: (userLogin, userId) => {
+        dispatch(login(userLogin, userId));
     }
 });
 
