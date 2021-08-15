@@ -1,5 +1,6 @@
 import ActionTypes from "../ActionTypes";
-
+import { getUserPageAPI } from '../../API/Api';
+import { setUser } from '../ActionCreators';
 const initialState = {
     posts: [{
             ownerId: 12,
@@ -73,5 +74,12 @@ const ProfileReducer = (state = initialState, action) => {
     }
 
 }
+
+export const getUserPageThunkCreator = (userId) => (dispatch) => {
+    getUserPageAPI(userId).then((data) => {
+        dispatch(setUser(data));
+    })
+}
+
 
 export default ProfileReducer;

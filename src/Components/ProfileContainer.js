@@ -2,24 +2,18 @@ import Profile from "./Profile";
 import { addPostAction, newPostAreaAction, setUser } from '../Redux/ActionCreators';
 import { connect } from "react-redux";
 import React, { Component } from 'react'
-import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { getUserPageThunkCreator } from "../Redux/Reducers/ProfileReducer";
+import { authRedirect } from '../HOC/AuthRedirect'
+import { compose } from "redux";
 
-
-class ProfileAPI extends Component {
+class ProfileContainer extends Component {
     componentDidMount = () => {
-
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + this.props.match.params.userId)
-            .then((response) => {
-                this.props.setUser(response.data);
-            })
-            
+        this.props.getUserPage(this.props.match.params.userId);
     };
-    
-    
     render() {
         return (
-            <Profile {...this.props}/>
+            <Profile {...this.props} />
         )
     }
 }
@@ -30,6 +24,7 @@ const mapStateToProps = (state) => ({
     posts: state.profilePage.posts,
     newPost: state.profilePage.newPost,
     user: state.profilePage.user,
+    isLogin: state.auth.isLogin
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -42,7 +37,15 @@ const mapDispatchToProps = (dispatch) => ({
     },
     setUser: (user) => {
         dispatch(setUser(user));
+    },
+    getUserPage: (userId) => {
+        dispatch(getUserPageThunkCreator(userId))
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileAPI));
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    authRedirect,
+    withRouter
+)(ProfileContainer);

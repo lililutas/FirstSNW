@@ -1,47 +1,21 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import { searchUserText, setUsers, toggleFollow, toggleFetching } from "../Redux/ActionCreators";
+import { searchUserText, setUsers, toggleFetching } from "../Redux/ActionCreators";
 import Users from './Users';
-import { checkFollowAPI, followAPI, getUsersAPI, unfollowAPI } from '../API/Api';
+import { getUsersThunkCreator, toggleFollowThunkCreator } from "../Redux/Reducers/UsersReducer";
+import { compose } from "redux";
 
-class UsersAPI extends Component {
+class UsersContainer extends Component {
 
     componentDidMount = () => {
         if (this.props.users.length === 0) {
-            this.getUsers();
+            this.props.getUsers(this.props.usersPageCount, this.props.usersPage);
         }
-    }
-
-    toggleFollow = (event) => {
-        checkFollowAPI(event.target.value).then((data) => {
-            if (!data) {
-                followAPI(event.target.value).then((data) => {
-                    if (data.resultCode === 0) {
-                        this.props.toggleFollow(event);
-                    }
-                })
-            }
-            else {
-                unfollowAPI(event.target.value).then((data) => {
-                    if (data.resultCode === 0) {
-                        this.props.toggleFollow(event);
-                    }
-                })
-            }
-        })
-    }
-
-    getUsers = () => {
-        this.props.toggleFetching(true);
-        getUsersAPI(this.props.usersPageCount, this.props.usersPage).then((data) => {
-            this.props.setUsers(data.items);
-            this.props.toggleFetching(false);
-        })
     }
 
     render() {
         return (
-            <Users getUsers={this.getUsers} users={this.props.users} toggleFollow={this.toggleFollow} isFetching={this.props.isFetching} />
+            <Users getUsers={this.props.getUsers} users={this.props.users} toggleFollow={this.props.toggleFollow} isFetching={this.props.isFetching} />
         )
     }
 }
@@ -61,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         toggleFollow: (event) => {
             event.preventDefault();
-            dispatch(toggleFollow(event.target.value));
+            dispatch(toggleFollowThunkCreator(event.target.value));
         },
         searchUserText: (event) => {
             dispatch(searchUserText(event.target.value));
@@ -71,8 +45,13 @@ const mapDispatchToProps = (dispatch) => {
         },
         toggleFetching: (fetching) => {
             dispatch(toggleFetching(fetching));
+        },
+        getUsers: (usersPageCount, usersPage) => {
+            dispatch(getUsersThunkCreator(usersPageCount, usersPage));
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(UsersContainer);

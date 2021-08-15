@@ -1,5 +1,6 @@
 import ActionTypes from "../ActionTypes";
-
+import { toggleFetching, setUsers, toggleFollow } from '../ActionCreators';
+import { getUsersAPI, checkFollowAPI, followAPI, unfollowAPI } from '../../API/Api';
 /* example 
         {
             id: 6,
@@ -58,6 +59,33 @@ const UsersReducer = (state = initialState, action) => {
             return state;
     }
 
+}
+
+export const getUsersThunkCreator = (usersPageCount, usersPage) => (dispatch) => {
+    dispatch(toggleFetching(true));
+    getUsersAPI(usersPageCount, usersPage).then((data) => {
+        dispatch(setUsers(data.items));
+        dispatch(toggleFetching(false));
+    })
+}
+
+export const toggleFollowThunkCreator = (userId) => (dispatch) => {
+    checkFollowAPI(userId).then((data) => {
+        if (!data) {
+            followAPI(userId).then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(toggleFollow(userId));
+                }
+            })
+        }
+        else {
+            unfollowAPI(userId).then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(toggleFollow(userId));
+                }
+            })
+        }
+    })
 }
 
 export default UsersReducer;

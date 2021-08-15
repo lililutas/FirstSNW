@@ -28,3 +28,7 @@ export const unfollowAPI = (userId) => {
 export const checkAuthAPI = () => {
     return instance.get('auth/me').then((response) => response.data);
 }
+
+export const getUserPageAPI = (userId) => {
+    return instance.get(`profile/${userId}`).then((response) => response.data);
+}

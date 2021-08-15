@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { checkAuthAPI } from '../API/Api';
-import { login } from '../Redux/ActionCreators';
+import { compose } from 'redux';
+import { checkAuthThunkCreator } from '../Redux/Reducers/AuthReducer';
+/* import { login } from '../Redux/ActionCreators'; */
 import Header from './Header';
 
 
 class HeaderContainer extends Component {
 
     componentDidMount = () => {
-        checkAuthAPI().then((data) => {
-            if (data.resultCode === 0) {
-                this.props.login( data.data.login, data.data.id);
-            }
-        })
+        this.props.checkAuth();
     }
 
     render() {
@@ -28,9 +25,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    login: (userLogin, userId) => {
+   /*  login: (userLogin, userId) => {
         dispatch(login(userLogin, userId));
+    }, */
+    checkAuth: () => {
+        dispatch(checkAuthThunkCreator());
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(HeaderContainer);
