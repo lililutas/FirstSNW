@@ -32,3 +32,7 @@ export const checkAuthAPI = () => {
 export const getUserPageAPI = (userId) => {
     return instance.get(`profile/${userId}`).then((response) => response.data);
 }
+
+export const saveStatusAPI = (status) => {
+    return instance.put(`profile/status`, {status}).then((response) => response.data);
+}

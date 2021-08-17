@@ -1,6 +1,7 @@
 import React from 'react'
 import Post from './Post'
 import { Preloader } from './Preloader'
+import ProfileStatus from './ProfileStatus'
 export default function Profile(props) {
 
     if (!props.user) {
@@ -15,7 +16,9 @@ export default function Profile(props) {
                 </div>
                 <div className='profile__info'>
                     <div className='profile__name'>{props.user.fullName}</div>
-                    <div className='profile__about'>{props.user.aboutMe}</div>
+                    <div className='profile__about'>
+                        <ProfileStatus status={props.status} saveStatus={props.saveStatus}/>    
+                    </div>
                 </div>
             </div>
             <div className='profile__posts'>

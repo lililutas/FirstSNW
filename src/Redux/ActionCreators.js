@@ -72,3 +72,10 @@ export const login = (login, userId) => {
         userId
     }
 }
+
+export const setStatus = (status) => {
+    return {
+        type: ActionTypes.setStatus,
+        status
+    }
+}

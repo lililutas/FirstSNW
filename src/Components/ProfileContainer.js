@@ -3,7 +3,7 @@ import { addPostAction, newPostAreaAction, setUser } from '../Redux/ActionCreato
 import { connect } from "react-redux";
 import React, { Component } from 'react'
 import { withRouter } from "react-router-dom";
-import { getUserPageThunkCreator } from "../Redux/Reducers/ProfileReducer";
+import { getUserPageThunkCreator, saveStatusThunkCreator } from "../Redux/Reducers/ProfileReducer";
 import { authRedirect } from '../HOC/AuthRedirect'
 import { compose } from "redux";
 
@@ -24,7 +24,9 @@ const mapStateToProps = (state) => ({
     posts: state.profilePage.posts,
     newPost: state.profilePage.newPost,
     user: state.profilePage.user,
-    isLogin: state.auth.isLogin
+    isLogin: state.auth.isLogin,
+    myId: state.auth.userId,
+    status: state.profilePage.status
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -39,7 +41,10 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(setUser(user));
     },
     getUserPage: (userId) => {
-        dispatch(getUserPageThunkCreator(userId))
+        dispatch(getUserPageThunkCreator(userId));
+    },
+    saveStatus: (status) => {
+        dispatch(saveStatusThunkCreator(status));
     }
 });
 

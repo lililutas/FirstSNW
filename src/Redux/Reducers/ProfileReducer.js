@@ -1,6 +1,6 @@
 import ActionTypes from "../ActionTypes";
-import { getUserPageAPI } from '../../API/Api';
-import { setUser } from '../ActionCreators';
+import { getUserPageAPI, saveStatusAPI } from '../../API/Api';
+import { setUser, setStatus } from '../ActionCreators';
 const initialState = {
     posts: [{
             ownerId: 12,
@@ -37,6 +37,7 @@ const initialState = {
     ],
     user: null,
     newPost: '',
+    status: '',
 
 };
 
@@ -69,6 +70,11 @@ const ProfileReducer = (state = initialState, action) => {
                     ...action.user
                 }
             };
+        case ActionTypes.setStatus:
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state;
     }
@@ -81,5 +87,13 @@ export const getUserPageThunkCreator = (userId) => (dispatch) => {
     })
 }
 
+
+export const saveStatusThunkCreator = (status) => (dispatch) => {
+    saveStatusAPI(status).then((data) => {
+        if(data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
+    })
+}
 
 export default ProfileReducer;

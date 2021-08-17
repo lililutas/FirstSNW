@@ -184,6 +184,66 @@
   font-weight: 700;
 }
 
+.profile__status{
+}
+
+.profile__status p{
+  margin: 10px 5px;
+  padding: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.profile__status p:hover{
+  background-color: #fff;
+}
+
+/* statusModal */
+.modal{
+  display: flex;
+  flex-direction: column;
+  background-color: #efefef;
+  width: 70%;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 15px 10px;
+  overflow: auto; 
+  border: 5px solid #fff;
+  border-radius: 20px;
+}
+
+.modal-input input{
+  border-radius: 20px;
+  border: 2px solid #fff;
+  background-color: #efefef;
+  padding: 5px 10px;
+  font-size: 15px;
+  transition: all .2s linear;
+}
+
+.modal-input input:focus{
+  border-color: #11acff;
+  outline: none;
+}
+
+.modal-accept button{
+  margin-top: 5px;
+  border-radius: 20px;
+  border: 5px solid #fff;
+  background-color: #efefef;
+  padding: 5px 10px;
+  font-size: 15px;
+  transition: all .2s linear;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.modal-accept button:hover{
+  border-color: #11acff
+}
+/* /statusModal */
 
 /* /profile */
 
