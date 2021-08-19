@@ -1,6 +1,7 @@
-import React from 'react'
-import Companion from './Companion'
-import { Message } from './Message'
+import React from 'react';
+import Companion from './Companion';
+import { Message } from './Message';
+import MessageForm from './MessageForm';
 
 export default function Messages(props) {
     return (
@@ -26,10 +27,7 @@ export default function Messages(props) {
                     }
                 </div>
                 <div className='dialog__footer'>
-                    <form method='GET'>
-                        <textarea placeholder='Напишите что-нибудь...' value={props.state.newMessage} onChange={props.newMessageArea} />
-                        <button onClick={props.sendMessage}>Отправить</button>
-                    </form>
+                    <MessageForm sendMessage={props.sendMessage}/>
                 </div>
             </div>
         </div>

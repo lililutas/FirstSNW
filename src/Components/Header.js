@@ -1,6 +1,6 @@
 import React from 'react'
 import '../App.css'
-
+import {Link} from 'react-router-dom';
 
 export default function Header(props) {
     return (
@@ -12,7 +12,7 @@ export default function Header(props) {
             <div className='header__auth'>
                 {props.isLogin? 
                 <button type='button' className='btn-login' onClick={props.logout}>Выйти</button>
-                :<button type='button' className='btn-login' onClick={props.login}>Войти</button>}
+                :<Link to='/login' className='btn-login'>Войти</Link>}
                 
             </div>
         </div>

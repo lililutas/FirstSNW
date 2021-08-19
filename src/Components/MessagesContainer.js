@@ -23,12 +23,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    newMessageArea: (event) => {
-        dispatch(newMessageAreaAction(event.target.value));
-    },
-    sendMessage: (event) => {
-        event.preventDefault();
-        dispatch(sendMessageAction(1, 1));
+    sendMessage: (message) => {
+        dispatch(sendMessageAction(1, message));
     }
 });
 

@@ -1,33 +1,19 @@
 import ActionTypes from "./ActionTypes";
 
-export const addPostAction = (ownerId, holderId) => {
+export const addPostAction = (holderId, newPostText) => {
     return {
         type: ActionTypes.addPost,
-        ownerId,
         holderId,
+        newPostText
     };
 }
 
-export const newPostAreaAction = (text) => {
-    return {
-        type: ActionTypes.updateText,
-        text
-    }
-}
-
-export const sendMessageAction = (ownerId, dialogId) => {
+export const sendMessageAction = (dialogId, newMessage) => {
     return {
         type: ActionTypes.sendMessage,
-        ownerId,
         dialogId,
+        newMessage
     };
-}
-
-export const newMessageAreaAction = (content) => {
-    return {
-        type: ActionTypes.updateContent,
-        content
-    }
 }
 
 export const toggleFollow = (userId) => {
@@ -65,11 +51,12 @@ export const setUser = (user) => {
     }
 }
 
-export const login = (login, userId) => {
+export const login = (isLogin, login, userId) => {
     return {
         type: ActionTypes.login,
         login,
-        userId
+        userId,
+        isLogin
     }
 }
 

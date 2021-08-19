@@ -31,8 +31,7 @@ const initialState = {
             dialogId: 1,
             content: 'Мое первое сообщение'
         },
-    ],
-    newMessage: '',
+    ]
 }
 
 const MessageReducer = (state = initialState, action) => {
@@ -43,17 +42,10 @@ const MessageReducer = (state = initialState, action) => {
                 messages: [
                     ...state.messages,
                     {
-                        ownerId: action.ownerId,
                         dialogId: action.dialogId,
-                        content: state.newMessage
+                        content: action.newMessage
                     }
-                ],
-                newMessage: ''
-            };
-        case ActionTypes.updateContent:
-            return {
-                ...state,
-                newMessage: action.content
+                ]
             };
         default:
             return state;

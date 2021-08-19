@@ -36,7 +36,6 @@ const initialState = {
 
     ],
     user: null,
-    newPost: '',
     status: '',
 
 };
@@ -49,18 +48,11 @@ const ProfileReducer = (state = initialState, action) => {
                 posts: [
                         ...state.posts,
                         {
-                            ownerId: action.ownerId,
                             holderId: action.holderId,
                             likes: 0,
-                            content: state.newPost
+                            content: action.newPostText
                         }
                     ],
-                    newPost: ''
-            };
-        case ActionTypes.updateText:
-            return {
-                ...state,
-                newPost: action.text
             };
         case ActionTypes.setUser:
         

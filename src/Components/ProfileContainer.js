@@ -30,12 +30,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    newPostArea: (event) => {
-        dispatch(newPostAreaAction(event.target.value));
-    },
-    addPost: (event) => {
-        event.preventDefault();
-        dispatch(addPostAction(1, 1));
+    addPost: (newPostText) => {
+        dispatch(addPostAction(1, newPostText));
     },
     setUser: (user) => {
         dispatch(setUser(user));

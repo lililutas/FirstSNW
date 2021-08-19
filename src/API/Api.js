@@ -36,3 +36,11 @@ export const getUserPageAPI = (userId) => {
 export const saveStatusAPI = (status) => {
     return instance.put(`profile/status`, {status}).then((response) => response.data);
 }
+
+export const loginAPI = (email, password, rememberMe) => {
+    return instance.post(`/auth/login`, {email, password, rememberMe}).then((response) => response.data);
+}
+
+export const logoutAPI = () => {
+    return instance.delete(`/auth/login`).then((response) => response.data);
+}

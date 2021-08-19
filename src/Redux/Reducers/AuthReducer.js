@@ -1,5 +1,5 @@
 import ActionTypes from "../ActionTypes";
-import { checkAuthAPI } from '../../API/Api'
+import { checkAuthAPI, loginAPI, logoutAPI } from '../../API/Api'
 import { login as checkLogin} from '../ActionCreators';
 const initialState = {
     isLogin: false,
@@ -12,9 +12,9 @@ const AuthReducer = (state = initialState, action) => {
         case ActionTypes.login:
             return {
                 ...state,
-                isLogin: true,
-                    login: action.login,
-                    userId: action.userId
+                isLogin: action.isLogin,
+                login: action.login,
+                userId: action.userId
             };
 
         default:
@@ -25,8 +25,27 @@ const AuthReducer = (state = initialState, action) => {
 export const checkAuthThunkCreator = () => (dispatch) => {
     checkAuthAPI().then((data) => {
         if (data.resultCode === 0) {
-            dispatch(checkLogin(data.data.login, data.data.id));
+            dispatch(checkLogin(true, data.data.login, data.data.id));
         }
+        else{
+            dispatch(checkLogin(false, null, null))
+        }
+    })
+}
+
+export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => {
+    loginAPI(email, password, rememberMe).then((data) => {
+        if (data.resultCode === 0) {
+            dispatch(checkAuthThunkCreator());
+        };
+    })
+}
+
+export const logoutThunkCreator = () => (dispatch) => {
+    logoutAPI().then((data) => {
+        if (data.resultCode === 0) {
+            dispatch(checkAuthThunkCreator());
+        };
     })
 }
 

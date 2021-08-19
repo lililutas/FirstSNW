@@ -29,7 +29,9 @@ export default class ProfileStatus extends Component {
     }
 
     saveStatus = () => {
-        this.props.saveStatus(this.state.status);
+        if(this.state.status !== this.props.status){
+            this.props.saveStatus(this.state.status);
+        }
         this.editStatusToggle();
     }
 

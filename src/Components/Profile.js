@@ -1,5 +1,5 @@
 import React from 'react'
-import Post from './Post'
+import ProfilePosts from './ProfilePosts'
 import { Preloader } from './Preloader'
 import ProfileStatus from './ProfileStatus'
 export default function Profile(props) {
@@ -21,21 +21,7 @@ export default function Profile(props) {
                     </div>
                 </div>
             </div>
-            <div className='profile__posts'>
-                <div className='posts__header'>
-                    <form method='GET'>
-                        <textarea placeholder='Напишите что-нибудь...' value={props.newPost} onChange={props.newPostArea} />
-                        <button onClick={props.addPost}>Опубликовать</button>
-                    </form>
-                </div>
-                <div className='posts__items'>
-                    {
-                        props.posts.map(post => {
-                            return <Post name={post.name} content={post.content} likes={post.likes} />
-                        }).reverse()
-                    }
-                </div>
-            </div>
+            <ProfilePosts posts={props.posts} addPost={props.addPost}/>
         </div>
     )
 
