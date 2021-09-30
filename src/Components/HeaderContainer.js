@@ -13,7 +13,8 @@ class HeaderContainer extends Component {
 
     render() {
         return (
-            <Header isLogin={this.props.isLogin} logout={this.props.logout} />
+            <Header isLogin={//this.props.isLogin
+            true} logout={this.props.logout} />
         )
     }
 }
