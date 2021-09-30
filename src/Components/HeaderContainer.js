@@ -8,7 +8,7 @@ import Header from './Header';
 class HeaderContainer extends Component {
 
     componentDidMount = () => {
-        this.props.checkAuth();
+      //  this.props.checkAuth();
     }
 
     render() {
