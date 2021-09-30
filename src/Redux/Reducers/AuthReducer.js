@@ -2,9 +2,9 @@ import ActionTypes from "../ActionTypes";
 import { checkAuthAPI, loginAPI, logoutAPI } from '../../API/Api'
 import { login as checkLogin} from '../ActionCreators';
 const initialState = {
-    isLogin: false,
+    isLogin: true,
     login: null,
-    userId: null
+    userId: 1234
 }
 
 const AuthReducer = (state = initialState, action) => {
